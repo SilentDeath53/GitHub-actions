@@ -1,0 +1,21 @@
+name: Ballerina Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Ballerina
+      uses: ballerina-platform/ballerina-installer@v1.0.0
+
+    - name: Build and Run Ballerina
+      run: |
+        docker build -t my-ballerina-app .
+        docker run my-ballerina-app
